@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - HUD
+  - redLaser
+  - blueLaser
+  - rocket
+  - enemyRocket
+  - playerShip
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - rocket
+  - Water
+  - UI
+  - blueLaser
+  - redLaser
+  - blueShip
+  - evilShip
+  - camera
+  - UI2
+  - enemyRocket
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: blueLaser
+    uniqueID: 1898497043
+    locked: 0
+  - name: redLaser
+    uniqueID: 3932444719
+    locked: 0
+  - name: evilShip
+    uniqueID: 3509004569
+    locked: 0
+  - name: blueShip
+    uniqueID: 1388672747
+    locked: 0
