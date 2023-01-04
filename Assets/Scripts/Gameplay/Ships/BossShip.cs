@@ -11,16 +11,20 @@ public class BossShip : Ship
     const float forceVertical = 4000;
     const float forceHorizontal = -2000;
     const float shotFrequency = 1.0f;
+    const int maxHealth = 1000;
     const int point = 1000;
     bool isShooted = false;
     bool isShootedRocket = false;
     Timer shotTimer;
     float heightOfShip;
     float widthOfShip;
+    Hud hud;
     // Start is called before the first frame update
     void Start()
     {
-        this.health = 1000;
+        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Hud>();
+        hud.ActivateHealthBar();
+        this.health = maxHealth;
         this.reloadTime = 2.40f;
         rocketReload = gameObject.AddComponent<Timer>();
         rocketReload.Duration = reloadTime;
@@ -81,12 +85,14 @@ public class BossShip : Ship
         if (collision.gameObject.CompareTag("blueLaser"))
         {
             health -= 25;
+            hud.UpdateHealthBar(health, maxHealth);
             if (health <= 0)
             {
 
                 Instantiate<GameObject>(prefabExplosion, transform.position, Quaternion.identity);
                 Destroy(gameObject);
-                Hud hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Hud>();
+                
+                hud.ActivateRestartButton(true);
                 hud.AddPoints(point);
 
             }
@@ -99,13 +105,16 @@ public class BossShip : Ship
         if (collision.gameObject.CompareTag("rocket"))
         {
             health -= 100;
+            hud.UpdateHealthBar(health, maxHealth);
             Instantiate<GameObject>(prefabExplosion, collision.gameObject.transform.position, Quaternion.identity);
             if (health <= 0)
             {
 
                 Instantiate<GameObject>(prefabExplosion, transform.position, Quaternion.identity);
                 Destroy(gameObject);
-                Hud hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Hud>();
+
+
+                hud.ActivateRestartButton(true);
                 hud.AddPoints(point);
 
             }

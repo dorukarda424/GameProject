@@ -10,7 +10,7 @@ public class Ship : MonoBehaviour
     [SerializeField]
     protected GameObject bulletPrefab;
 
-    
+    Hud hud;
     protected const float movePerSeconds = 15;
     protected const float invisibilityTime = 1;
     protected float reloadTime = 4;

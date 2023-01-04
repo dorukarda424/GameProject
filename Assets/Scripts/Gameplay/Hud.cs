@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class Hud : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField]
+    Image bossHealthBar;
     [SerializeField]
     TextMeshProUGUI enemyCounter;
     [SerializeField]
     TextMeshProUGUI scoreText;
     [SerializeField]
     TextMeshProUGUI healthText;
+    [SerializeField]
+    GameObject restartButton;
+    [SerializeField]
+    TextMeshProUGUI finishedText;
     const string ScorePrefix = "Score: ";
     const string HealthPrefix = "Health: ";
     const string EnemyPrefix = "Enemy Ships: ";
@@ -56,6 +63,32 @@ public class Hud : MonoBehaviour
     {
         this.enemy = enemy;
         enemyCounter.text = EnemyPrefix + enemy.ToString();
+    }
+    public void ActivateRestartButton(bool isWin)
+    {
+        restartButton.SetActive(true);
+        Time.timeScale = 0;
+        if (isWin)
+        {
+            finishedText.text = "you win";
+        }
+        else
+            finishedText.text = "you lose";
+
+            
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+    }
+    public void UpdateHealthBar(float health,float maxHealth)
+    {
+        bossHealthBar.fillAmount = Mathf.Clamp(health/maxHealth,0,1f);
+    }
+    public void ActivateHealthBar()
+    {
+        bossHealthBar.gameObject.SetActive(true);    
     }
 
 }

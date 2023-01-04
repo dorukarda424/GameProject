@@ -12,9 +12,10 @@ public class BlueShip : Ship
     GameObject rocketPrefab;
     const int bullets = 1;
     Timer bulletReload;
- 
+    Hud hud;
 
-   
+
+
     void Start()
     {
         bulletReload = gameObject.AddComponent<Timer>();
@@ -27,6 +28,7 @@ public class BlueShip : Ship
         invisibilityTimer = gameObject.AddComponent<Timer>();
         invisibilityTimer.Duration = invisibilityTime;
         spriteRender = GetComponent<SpriteRenderer>();
+        hud= GameObject.FindGameObjectWithTag("HUD").GetComponent<Hud>();
     }
 
     // Update is called once per frame
@@ -100,11 +102,14 @@ public class BlueShip : Ship
                 health -= 10;
                 if (health <= 0)
                 {
+                    health = 0;
+                    Instantiate<GameObject>(prefabExplosion, transform.position, Quaternion.identity);
                     Destroy(gameObject);
+                    hud.ActivateRestartButton(false);
                 }
                 HitEffect();
                 invisibilityTimer.Run();
-                Hud hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Hud>();
+
                 hud.RemoveHealth(10);
             }
             Destroy(collision.gameObject);
@@ -121,11 +126,14 @@ public class BlueShip : Ship
                 if (health <= 0)
                 {
                     health = 0;
+                    Instantiate<GameObject>(prefabExplosion,transform.position, Quaternion.identity);
                     Destroy(gameObject);
+                    hud.ActivateRestartButton(false);
+                    
                 }
                 HitEffect();
                 invisibilityTimer.Run();
-                Hud hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Hud>();
+                
                 hud.RemoveHealth(50);
                 }
                 Destroy(collision.gameObject);

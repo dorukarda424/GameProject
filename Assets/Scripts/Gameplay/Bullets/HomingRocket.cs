@@ -9,7 +9,7 @@ public class HomingRocket : MonoBehaviour
     const float movementSpeed = 18;
     Rigidbody2D rb2d;
     GameObject blueShip;
-    const float angleChangingSpeed=20;
+    const float angleChangingSpeed=25;
     const float rocketDuration = 6;
     Timer deleteTimer;
     // Update is called once per frame

@@ -16,7 +16,7 @@ public class ShipSpawner : MonoBehaviour
     [SerializeField]
     GameObject bossShip;
     Timer timer;
-    int shipCounter = 2;
+    int shipCounter = 1;
     const float minSpawnTimer = 2;
     const float maxSpawnTimer = 3;
     bool bossSpawner=false;
@@ -60,6 +60,7 @@ public class ShipSpawner : MonoBehaviour
                     InstantiateShip();
                     shipCounter--;
                     hud.EnemyCounter(shipCounter);
+                    
                 }
                   
                 else if(shipCounter==0 && bossSpawner==false)
